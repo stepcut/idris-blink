@@ -104,3 +104,46 @@ it shutting down properly. So, my goal would be to target the
 RaspberryPi hardware directly. There are challenges here such as
 integrating with the built-in bootloader, writing drivers for the
 hardware with may require binary blobs, etc.
+
+
+Why?
+====
+
+You might wonder why use Idris for embedded development? But, for me,
+it seems like the perfect match. Debugging code on embedded systems is
+extremely annoying. Often times your only output is a single LED,
+making it slow to narrow down a problem. In many cases the system
+might be controlling dangerous or expensive equipment which could be
+damaged or even lead to loss of life.
+
+I first became interested in functional programming over a decade ago
+when working as a firmware engineer. Frusted with having to debug
+stupid C code bugs I searched out and found
+[splint](http://en.wikipedia.org/wiki/Splint_(programming_tool))
+(called lc-lint at the time). It's a tool that statically checks C
+code eliminating many of my coding errors. To perform the extra checks
+you have to add additional annotations to your code via specially
+formatted C comments.
+
+splint saved me so much time I wondered why languages didn't have that
+functionality built-in. This led me to the
+[Clean](http://wiki.clean.cs.ru.nl/Clean) programming language, and
+then on to [Haskell](http://www.haskell.org).
+
+But, it is Idris that seems to really have enough power to make it
+exciting for embedded development because it can capture the
+constraints of the system without becoming
+awkward. For example, I would like to control a string of 50
+individually addressable RGB LEDs. I know that my system has exactly
+50 LEDS -- and so I can specify that the code must supply a `Vect 50 RGB`.
+
+I also wish to use Idris to control a propane flame effect with a
+verified pilot. The system should never open the solenoid and release
+the propane fuel unless the pilot light can be verified. Using Idris,
+I can enforce this constraint at compile time and be certain it holds.
+
+Often times I wish to communicate between the embedded system and a
+host machine. The Idris
+[Protocols](https://github.com/edwinb/Protocols) library seems like a
+very attractive solution to handling the over-the-wire-format and
+ensuring both sides are functioning correctly.
