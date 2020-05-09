@@ -1,16 +1,18 @@
 module Main
 
+%include C "idris_arduino.h"
+
 digitalWrite : Int -> Int -> IO ()
-digitalWrite pin val = mkForeign (FFun "idrard_digitalWrite" [FInt, FInt] FUnit) pin val
+digitalWrite pin val = foreign FFI_C "idrard_digitalWrite" (Int -> Int -> IO ()) pin val
 
 pinMode : Int -> Int -> IO ()
-pinMode pin mode = mkForeign (FFun "idrard_pinMode" [FInt, FInt] FUnit) pin mode
+pinMode pin mode = foreign FFI_C "idrard_pinMode" (Int -> Int -> IO ()) pin mode
 
 delay : Int -> IO ()
-delay ms = mkForeign (FFun "idrard_delay" [FInt] FUnit) ms
+delay ms = foreign FFI_C "idrard_delay" (Int -> IO ()) ms
 
 blink : Int -> Int -> IO ()
-blink pin ms = mkForeign (FFun "idrard_blink" [FInt, FInt] FUnit) pin  ms
+blink pin ms = foreign FFI_C "idrard_blink" (Int -> Int -> IO ()) pin ms
 
 main : IO ()
 main =
