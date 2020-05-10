@@ -14,7 +14,8 @@ RTS_OBJS = \
 	$(OBJDIR)/rts/idris_heap.o \
 	$(OBJDIR)/rts/mini-gmp.o
 
-OTHER_OBJS += $(RTS_OBJS) $(IDRIS_MAIN:.idr=.o)
+LOCAL_C_SRCS += $(IDRIS_MAIN:.idr=.c)
+OTHER_OBJS += $(RTS_OBJS)
 
 include $(ARDUINO_MAKEFILE_PATH)
 

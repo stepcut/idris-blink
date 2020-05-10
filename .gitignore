@@ -1,3 +1,4 @@
 *.ibc
 *.o
 /build-*
+/[A-Z]*.c
