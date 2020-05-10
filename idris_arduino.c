@@ -13,14 +13,3 @@ void idrard_pinMode(int pin, int mode)
 void idrard_delay(int ms) {
     delay(ms);
 }
-
-void idrard_blink(int pin, int ms) {
-//    pinMode(pin, OUTPUT);
-    while(1) {
-        digitalWrite(pin, 1);
-        delay(ms);
-        digitalWrite(pin, 0);
-        delay(ms);
-    }
-}
-

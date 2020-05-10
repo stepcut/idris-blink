@@ -12,7 +12,11 @@ delay : Int -> IO ()
 delay ms = foreign FFI_C "idrard_delay" (Int -> IO ()) ms
 
 blink : Int -> Int -> IO ()
-blink pin ms = foreign FFI_C "idrard_blink" (Int -> Int -> IO ()) pin ms
+blink pin t = do digitalWrite pin 1
+                 delay t
+                 digitalWrite pin 0
+                 delay t
+                 blink pin t
 
 main : IO ()
 main =
