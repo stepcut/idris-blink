@@ -5,7 +5,14 @@ IDRIS_RTS_CFLAGS = -DFORCE_ALIGNMENT -DIDRIS_TARGET_OS=\"none\" -DIDRIS_TARGET_T
 
 NO_CORE_MAIN_CPP := "true"
 
-RTS_OBJS = $(OBJDIR)/rts/arduino/idris_main.o $(OBJDIR)/rts/idris_gc.o $(OBJDIR)/rts/idris_rts.o $(OBJDIR)/rts/idris_bitstring.o $(OBJDIR)/rts/idris_gmp.o $(OBJDIR)/rts/idris_heap.o $(OBJDIR)/rts/mini-gmp.o
+RTS_OBJS = \
+	$(OBJDIR)/rts/arduino/idris_main.o \
+	$(OBJDIR)/rts/idris_gc.o \
+	$(OBJDIR)/rts/idris_rts.o \
+	$(OBJDIR)/rts/idris_bitstring.o \
+	$(OBJDIR)/rts/idris_gmp.o \
+	$(OBJDIR)/rts/idris_heap.o \
+	$(OBJDIR)/rts/mini-gmp.o
 
 OTHER_OBJS += $(RTS_OBJS) $(IDRIS_MAIN:.idr=.o)
 
