@@ -26,7 +26,9 @@ Next you will need to update the `Makefile` in this directory.
 You will need to set the following variables:
 
  * `ARDUINO_DIR`    = *where you unpacked the Arduino software*
- * `BOARD_TAG`      = *your board*
+ * `AVR_TOOLS_DIR`  = *dir containing `bin/avr-gcc` unless it is shipped with the Arduino software*
+ * `AVRDUDE_CONF`   = *path to `avrdude.conf` unless avrdude is shipped with the Arduino software*
+ * `BOARD_TAG` and `BOARD_SUB` = *your board name (e.g., uno, mega) and subname (if applicable, e.g. atmega2560 for mega)*
  * `IDRIS_RTS_PATH` = *path to the source for the RTS. Could point to the git source or to the copy of the files installed by cabal*
  * `ARDUINO_MAKEFILE_PATH` = *path to the `Arduino.mk` from step 2*
 
