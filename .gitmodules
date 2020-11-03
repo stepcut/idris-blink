@@ -1,0 +1,6 @@
+[submodule "arduino-makefile"]
+	path = arduino-makefile
+	url = https://github.com/sudar/Arduino-Makefile
+[submodule "rts"]
+	path = rts
+	url = https://github.com/buzden/idris2-rts-for-arduino
