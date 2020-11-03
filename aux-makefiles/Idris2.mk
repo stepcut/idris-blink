@@ -18,6 +18,10 @@ OTHER_OBJS += $(RTS_OBJS)
 
 include $(ARDUINO_MAKEFILE_PATH)
 
+ifdef BOSSA_OPTS
+  BOSSA_OPTS != sed "s/-d //" <<< "$(BOSSA_OPTS)"
+endif
+
 build/exec/%.c: %.idr
 	rm -f "$@"
 	CC=true idris2 --codegen refc "$<" <<< ":compile $(basename $(notdir "$@")) main"
