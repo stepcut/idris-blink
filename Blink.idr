@@ -1,19 +1,31 @@
 module Main
 
-%include C "Arduino.h"
+infixr 9 ...
 
-digitalWrite : Int -> Int -> IO ()
-digitalWrite pin val = foreign FFI_C "digitalWrite" (Int -> Int -> IO ()) pin val
+%inline
+(...) : (c -> d) -> (a -> b -> c) -> a -> b -> d
+(...) = (.) . (.)
 
-pinMode : Int -> Int -> IO ()
-pinMode pin mode = foreign FFI_C "pinMode" (Int -> Int -> IO ()) pin mode
+%foreign "C:digitalWrite,libarduino"
+prim_digitalWrite : Int -> Int -> PrimIO Unit
 
-delay : Int -> IO ()
-delay ms = foreign FFI_C "delay" (Int -> IO ()) ms
+digitalWrite : Int -> Int -> IO Unit
+digitalWrite = primIO ... prim_digitalWrite
+
+%foreign "C:pinMode,libarduino"
+prim_pinMode : Int -> Int -> PrimIO Unit
+
+pinMode : Int -> Int -> IO Unit
+pinMode = primIO ... prim_pinMode
+
+%foreign "C:delay,libarduino"
+prim_delay : Int -> PrimIO Unit
+
+delay : Int -> IO Unit
+delay = primIO . prim_delay
 
 forever : Monad f => f a -> f b
-forever x = do x
-               forever x
+forever x = do x; forever x
 
 blink : Int -> Int -> IO ()
 blink pin t = do digitalWrite pin 1

@@ -1,12 +1,14 @@
+ARDUINO_PACKAGE_DIR := $(HOME)/.arduino15/packages
 ADRUINO_DIR=/usr/share/arduino
 AVR_TOOLS_DIR=/usr
 AVRDUDE_CONF=/etc/avrdude.conf
-IDRIS_RTS_PATH=rts
 ARDUINO_MAKEFILE_PATH=/usr/share/arduino/Arduino.mk
+
+IDRIS_SUPPORT_SRC_PATH=$(HOME)/devel/idris2/support
 
 IDRIS_MAIN=Blink.idr
 
 BOARD_TAG=mega
 BOARD_SUB=atmega2560
 
-include Idris.mk
+include Idris2.mk
