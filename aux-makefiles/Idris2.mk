@@ -19,12 +19,12 @@ OTHER_OBJS += $(RTS_OBJS)
 include $(ARDUINO_MAKEFILE_PATH)
 
 ifdef BOSSA_OPTS
-  BOSSA_OPTS != sed "s/-d //" <<< "$(BOSSA_OPTS)"
+  BOSSA_OPTS != echo "$(BOSSA_OPTS)" | sed "s/-d //"
 endif
 
 build/exec/%.c: %.idr
 	rm -f "$@"
-	CC=true idris2 --codegen refc "$<" <<< ":compile $(basename $(notdir "$@")) main"
+	echo ":compile $(basename $(notdir "$@")) main" | CC=true idris2 --codegen refc "$<"
 	sed -i 's/Value \*mainExprVal/init();\n   Value *mainExprVal/' "$@"
 	sed -i 's|// add header(s) for library: libarduino|#include "Arduino.h"|' "$@"
 
