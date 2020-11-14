@@ -12,7 +12,7 @@ things to get started:
      The current version was tested against version 1.8.13.
      You need to untar or install the package for your platform.
 
-  3. Some `Arduino` compatible hardware
+  3. Some `Arduino`-compatible hardware
 
 Keep in mind that this repository contains git submodules for
 the arduino building system called [Arduino-Makefile](https://github.com/sudar/Arduino-Makefile)
@@ -24,14 +24,25 @@ you may need to tune the `Makefile` in the root directory to select the board yo
 This repository contains presets for several boards that lie at `aux-makefiles/board-*.mk`.
 
 Additionaly you may need to modify `Makefile` and files in the `aux-makefiles` directory.
-There are variables that you may set according to you installation:
+There are variables that you may set according to you installation.
+
+Installation-related variables:
 
  * `ARDUINO_DIR`    = *where you unpacked the Arduino software*
+ * `ARDUINO_PACKAGE_DIR` = *where your Arduino packages reside (in case you are using some in your project)*
+ * `BOARD_TAG` and `BOARD_SUB` = *your board name (e.g., uno, mega) and subname (if applicable, e.g. atmega2560 for mega)*
+ * `IDRIS_MAIN`     = *`idr`-file with the entry point (i.e. with the `main : IO ()` function)*
+
+Variables that now are defaulted to git submodules or set in `board-*.mk` example files:
+
+ * `IDRIS_SUPPORT_SRC_PATH` = *path to the `refc` support (i.e. the C RTS) of the Idris2*
+ * `ARDUINO_MAKEFILE_PATH` = *path to the main makefile from [Arduino-Makefile](https://github.com/sudar/Arduino-Makefile) building system;
+                              usually it points to `Arduino.mk` but this may depend on the architecture of the board you are using*
+
+Variables related to AVR boards:
+
  * `AVR_TOOLS_DIR`  = *dir containing `bin/avr-gcc` unless it is shipped with the Arduino software*
  * `AVRDUDE_CONF`   = *path to `avrdude.conf` unless avrdude is shipped with the Arduino software*
- * `BOARD_TAG` and `BOARD_SUB` = *your board name (e.g., uno, mega) and subname (if applicable, e.g. atmega2560 for mega)*
- * `IDRIS_RTS_PATH` = *path to the source for the RTS. Could point to the git source or to the copy of the files installed by cabal*
- * `ARDUINO_MAKEFILE_PATH` = *path to the `Arduino.mk` from step 2*
 
 Now you can run `make` to build the project or `make upload` to build & upload the code.
 
