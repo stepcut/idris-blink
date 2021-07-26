@@ -1,5 +1,5 @@
 ARDUINO_PACKAGE_DIR := $(HOME)/.arduino15/packages
-ADRUINO_DIR=/usr/share/arduino
+ARDUINO_DIR=/usr/share/arduino
 
 IDRIS_SUPPORT_SRC_PATH=rts
 
